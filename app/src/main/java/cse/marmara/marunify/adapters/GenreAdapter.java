@@ -2,6 +2,7 @@ package cse.marmara.marunify.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,10 @@ import cse.marmara.marunify.model.Genre;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder> {
     private List<Genre> arrayList;
-    private FragmentActivity frAct;
+    private FragmentManager frgMng;
 
-    public GenreAdapter(FragmentActivity frAct, List<Genre> arrayList) {
-        this.frAct = frAct;
+    public GenreAdapter(FragmentManager frgMng, List<Genre> arrayList) {
+        this.frgMng = frgMng;
         this.arrayList = arrayList;
     }
 
@@ -63,7 +64,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
             mTxtGnrTitle = view.findViewById(R.id.txtGenreTitle);
             mTxtGnrSngCnt = view.findViewById(R.id.txtGenreSongCount);
 
-            final Utils utils = new Utils(frAct);
+            final Utils utils = new Utils(frgMng);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

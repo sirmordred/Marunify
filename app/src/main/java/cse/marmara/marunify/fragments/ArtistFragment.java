@@ -27,13 +27,15 @@ public class ArtistFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private List<Artist> mList;
+    private FragmentManager frMng;
 
     public ArtistFragment() {
         // empty constructor
     }
 
     @SuppressLint("ValidFragment")
-    public ArtistFragment(List<Artist> mList) {
+    public ArtistFragment(FragmentManager frMng, List<Artist> mList) {
+        this.frMng = frMng;
         this.mList = mList;
     }
 
@@ -53,7 +55,7 @@ public class ArtistFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        ArtistAdapter adapter = new ArtistAdapter(getActivity(), mList);
+        ArtistAdapter adapter = new ArtistAdapter(frMng, mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

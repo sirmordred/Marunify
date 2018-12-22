@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,13 +27,15 @@ public class AlbumFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private List<Album> mList;
+    private FragmentManager frMng;
 
     public AlbumFragment() {
         // empty constructor
     }
 
     @SuppressLint("ValidFragment")
-    public AlbumFragment(List<Album> mList) {
+    public AlbumFragment(FragmentManager frMng, List<Album> mList) {
+        this.frMng = frMng;
         this.mList = mList;
     }
 
@@ -52,7 +55,7 @@ public class AlbumFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        AlbumAdapter adapter = new AlbumAdapter(getActivity(), mList);
+        AlbumAdapter adapter = new AlbumAdapter(frMng, mList);
         recyclerView.setAdapter(adapter); // set adapter on recyclerview
 
         return view;

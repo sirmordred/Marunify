@@ -2,6 +2,7 @@ package cse.marmara.marunify.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,10 @@ import cse.marmara.marunify.model.Album;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private List<Album> arrayList;
-    private FragmentActivity frAct;
+    private FragmentManager frgMng;
 
-    public AlbumAdapter(FragmentActivity frAct, List<Album> arrayList) {
-        this.frAct = frAct;
+    public AlbumAdapter(FragmentManager frgMng, List<Album> arrayList) {
+        this.frgMng = frgMng;
         this.arrayList = arrayList;
     }
 
@@ -63,7 +64,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
             mTxtAlbTitle = view.findViewById(R.id.txtAlbumTitle);
             mTxtAlbOwner = view.findViewById(R.id.txtAlbumOwner);
 
-            final Utils utils = new Utils(frAct);
+            final Utils utils = new Utils(frgMng);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

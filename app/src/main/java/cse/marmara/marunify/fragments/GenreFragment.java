@@ -27,13 +27,15 @@ public class GenreFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private List<Genre> mList;
+    private FragmentManager frMng;
 
     public GenreFragment() {
         // empty constructor
     }
 
     @SuppressLint("ValidFragment")
-    public GenreFragment(List<Genre> mList) {
+    public GenreFragment(FragmentManager frMng, List<Genre> mList) {
+        this.frMng = frMng;
         this.mList = mList;
     }
 
@@ -53,7 +55,7 @@ public class GenreFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        GenreAdapter adapter = new GenreAdapter(getActivity(), mList);
+        GenreAdapter adapter = new GenreAdapter(frMng, mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

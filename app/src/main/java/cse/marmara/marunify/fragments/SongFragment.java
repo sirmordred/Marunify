@@ -51,7 +51,7 @@ public class SongFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        SongAdapter adapter = new SongAdapter(getActivity(), mList);
+        SongAdapter adapter = new SongAdapter(mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,13 +25,16 @@ public class UserFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private List<User> mList;
+    private FragmentManager frMng;
+
 
     public UserFragment() {
         // empty constructor
     }
 
     @SuppressLint("ValidFragment")
-    public UserFragment(List<User> mList) {
+    public UserFragment(FragmentManager frMng, List<User> mList) {
+        this.frMng = frMng;
         this.mList = mList;
     }
 
@@ -50,7 +54,7 @@ public class UserFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        UserAdapter adapter = new UserAdapter(getActivity(), mList);
+        UserAdapter adapter = new UserAdapter(frMng, mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -17,13 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cse.marmara.marunify.model.Song;
+import cse.marmara.marunify.model.User;
 
 public class Utils {
-    private FragmentActivity fr_act;
+    private FragmentManager fr_mng;
     private static Connection con;
 
-    public Utils(FragmentActivity fr_act) {
-        this.fr_act = fr_act;
+    public Utils(FragmentManager fr_mng) {
+        this.fr_mng = fr_mng;
         ConnectToDatabase ctb = new ConnectToDatabase(); // make connection to database
         ctb.execute("");
     }
@@ -43,6 +43,7 @@ public class Utils {
                 // Playlist clicked, list all songs of that Playlist
                 break;
             case 4: // user clicked, list all song, genres, albums, artist but list only playlist who assigned to this user
+                // TODO Execure sql and create list of songs, albums etc and instantiate MainFragment()
                 break;
             default:
                     break;
@@ -50,8 +51,7 @@ public class Utils {
     }
 
     public void goToFragment(Fragment fragment) {
-        FragmentManager fm = fr_act.getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
+        FragmentTransaction transaction = fr_mng.beginTransaction();
         transaction.replace(R.id.flContent, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -67,6 +67,19 @@ public class Utils {
                 String sngDur = rs.getString(4);
 
                 retList.add(new Song(sngTitle,sngArt,sngArtCountry,sngDur));
+            }
+            return retList;
+        } catch (SQLException se) {
+            return retList;
+        }
+    }
+
+    public List<User> parseUserFromResultSet(ResultSet rs) {
+        List<User> retList = new ArrayList<>();
+        try {
+            while (rs.next() ) {
+                String usrName = rs.getString(0);
+                retList.add(new User(usrName));
             }
             return retList;
         } catch (SQLException se) {
@@ -115,5 +128,15 @@ public class Utils {
         return connection;
     }
 
+    private static void closeConnectionToDb() {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            con = null;
+        }
+    }
 
 }

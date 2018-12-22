@@ -1,5 +1,6 @@
 package cse.marmara.marunify.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,42 +31,42 @@ public class MainFragment extends Fragment {
 
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
+    private String usrName;
+    private FragmentManager frMng;
+
+    private List<Song> songArr;
+    private List<Genre> genreArr;
+    private List<Playlist> plArr;
+    private List<Artist> artArr;
+    private List<Album> albArr;
+
+    public MainFragment() {
+        // empty constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public MainFragment(FragmentManager frMng,
+                        List<Song> songArr, List<Genre> genreArr,
+                        List<Playlist> plArr, List<Artist> artArr,
+                        List<Album> albArr) {
+        this.songArr = songArr;
+        this.genreArr = genreArr;
+        this.plArr = plArr;
+        this.artArr = artArr;
+        this.albArr = albArr;
+        this.frMng = frMng;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-
-        List<Song> songArr = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            songArr.add(new Song(i,"Elbet bir gün"+i,"03:30"));
-        }
-
-        List<Genre> genreArr = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            genreArr.add(new Genre(i, "Album"+i));
-        }
-
-        List<Playlist> plArr = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            plArr.add(new Playlist(i, "Playlistim"+i));
-        }
-
-        List<Artist> artArr = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            artArr.add(new Artist(i,"Canbay","Türkiye"));
-        }
-
-        List<Album> albArr = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            albArr.add(new Album(i,"MyAlbum"+i, "03.12.2018", "Multi"));
-        }
+        adapter = new ViewPagerAdapter(frMng);
 
         Fragment ctFagment1 = new SongFragment(songArr);
-        Fragment ctFagment2 = new ArtistFragment(artArr);
-        Fragment ctFagment3 = new GenreFragment(genreArr);
-        Fragment ctFagment4 = new AlbumFragment(albArr);
-        Fragment ctFagment5 = new PlaylistFragment(plArr);
+        Fragment ctFagment2 = new ArtistFragment(frMng, artArr);
+        Fragment ctFagment3 = new GenreFragment(frMng, genreArr);
+        Fragment ctFagment4 = new AlbumFragment(frMng, albArr);
+        Fragment ctFagment5 = new PlaylistFragment(frMng, plArr);
 
         adapter.addFrag(ctFagment1, "SONG");
         adapter.addFrag(ctFagment2, "ARTIST");
@@ -86,40 +87,6 @@ public class MainFragment extends Fragment {
         viewPager =  view.findViewById(R.id.viewPager);
 
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
-
-        //Implementing tab selected listener over tablayout
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());//setting current selected item over viewpager
-                switch (tab.getPosition()) {
-                    case 0:
-                        Log.e("TAG","TAB1");
-                        break;
-                    case 1:
-                        Log.e("TAG","TAB2");
-                        break;
-                    case 2:
-                        Log.e("TAG","TAB3");
-                        break;
-                    case 3:
-                        Log.e("TAG","TAB4");
-                        break;
-                    case 4:
-                        Log.e("TAG","TAB5");
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);//setting tab over viewpager

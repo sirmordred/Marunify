@@ -2,6 +2,7 @@ package cse.marmara.marunify.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +19,10 @@ import cse.marmara.marunify.model.User;
 public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolder>{
 
     private List<User> arrayList;
-    private FragmentActivity frAct;
+    private FragmentManager frMng;
 
-    public UserAdapter(FragmentActivity frAct, List<User> arrayList) {
-        this.frAct = frAct;
+    public UserAdapter(FragmentManager frMng, List<User> arrayList) {
+        this.frMng = frMng;
         this.arrayList = arrayList;
     }
 
@@ -61,7 +62,7 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
             mMainContainer = view.findViewById(R.id.itemUser);
             mTxtUserName = view.findViewById(R.id.txtUserName);
 
-            final Utils utils = new Utils(frAct);
+            final Utils utils = new Utils(frMng);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

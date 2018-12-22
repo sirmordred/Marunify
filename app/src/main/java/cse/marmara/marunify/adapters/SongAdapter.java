@@ -22,7 +22,6 @@ import cse.marmara.marunify.model.Song;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
     private List<Song> arrayList;
-    private FragmentActivity frAct;
 
     private MediaPlayer mediaPlayer = null;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
@@ -35,8 +34,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         }
     };
 
-    public SongAdapter(FragmentActivity frAct, List<Song> arrayList) {
-        this.frAct = frAct;
+    public SongAdapter(List<Song> arrayList) {
         this.arrayList = arrayList;
     }
 
