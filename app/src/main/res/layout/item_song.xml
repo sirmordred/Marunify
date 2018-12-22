@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemSong"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="12dp"
+    android:layout_marginEnd="12dp"
+    android:weightSum="2">
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:weightSum="4"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txtSongTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:text="Aamzing" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txtSongDur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:text="03:30" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txtSongArtist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:text="Inna" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txtSongAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:text="Hot" />
+
+    </LinearLayout>
+
+</LinearLayout>
