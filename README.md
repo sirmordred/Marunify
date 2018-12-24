@@ -1,6 +1,12 @@
 # Marunify
 Spotify-like music player app which using MSSQL database
 
+This app is developed for CSE3055 Database Systems Fall-2018 Course project's Step 4: "Develop database application"
+
+**Contributors to this project:**
+- **Nuri Yıldız**
+- **Oğuzhan Yiğit**
+
 ## Android Settings:
 
 * Download this repo as zip file
