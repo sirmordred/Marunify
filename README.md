@@ -1,7 +1,7 @@
 # Marunify2
 Spotify-like music player app which using MSSQL database
 
-# How-to-open
+## Android Settings:
 
 * Download this repo as zip file
 * Extract somewhere
@@ -18,8 +18,10 @@ then change 'com.android.support:appcompat-v7:14.0.0' to 'com.android.support:ap
 
 After making all necessary changes open Android Studio again and click 'Open an existing Android Studio Project' find and open Marunify2
 
-SQL Server settings:
-- Right-click "Security/logins" on object explorer and Create "New user", select as "SQL Server connection" instead of "Windows authorization" and give username as "marunex" and password as "marunex123", and select "MARUNIFY" as default database of that user
+## SQL Server Settings:
+- Use Microsoft SSMS 2018 Version
+- Download MSSQL_backup.sql database backup and restore in SSMS
+- Right-click "Security/logins" on object explorer and Create "New user", select as "SQL Server connection" instead of "Windows authorization" and give username as "marunex" and password as "marunex123", and select "MARUNIFY" as default database of that user and give all the 'privileges' on security section
 - Type "sq" in search bar of windows OS, open "SQL Server 20XX Configuration Manager" and find "protocols for SQLEXPRESS", right-click TCP/IP and select "Properties", disable ipv5 and ipv6, ipv4 should be enabled, and in "IPAll" section dynamic port should be empty, and static port should be 1433
 - Thats all
 
