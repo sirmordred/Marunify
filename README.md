@@ -1,4 +1,4 @@
-# Marunify2
+# Marunify
 Spotify-like music player app which using MSSQL database
 
 ## Android Settings:
@@ -25,4 +25,4 @@ After making all necessary changes open Android Studio again and click 'Open an 
 - Type "sq" in search bar of windows OS, open "SQL Server 20XX Configuration Manager" and find "protocols for SQLEXPRESS", right-click TCP/IP and select "Properties", disable ipv5 and ipv6, ipv4 should be enabled, and in "IPAll" section dynamic port should be empty, and static port should be 1433
 - Thats all
 
-XXX NOTE: Only run this app from Android Emulator, and make sure you have a user as 'marunex' and password as 'marunex123' and database as 'MARUNIFY' on SSMS (SQL server management studi)
+XXX NOTE: Only run this app from Android Emulator, and make sure you have a user as 'marunex' and password as 'marunex123' and database as 'MARUNIFY' on SSMS (SQL server management studio)
