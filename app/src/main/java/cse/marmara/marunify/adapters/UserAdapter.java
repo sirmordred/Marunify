@@ -1,5 +1,7 @@
 package cse.marmara.marunify.adapters;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -20,9 +22,12 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
 
     private List<User> arrayList;
     private FragmentManager frMng;
+    private FragmentActivity act;
 
-    public UserAdapter(FragmentManager frMng, List<User> arrayList) {
+
+    public UserAdapter(FragmentManager frMng, FragmentActivity act, List<User> arrayList) {
         this.frMng = frMng;
+        this.act = act;
         this.arrayList = arrayList;
     }
 
@@ -62,7 +67,12 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.UserViewHolde
             mMainContainer = view.findViewById(R.id.itemUser);
             mTxtUserName = view.findViewById(R.id.txtUserName);
 
-            final Utils utils = new Utils(frMng);
+            ProgressDialog pdialog = new ProgressDialog(act);
+            pdialog.setMessage("Opening. Please wait...");
+            pdialog.setIndeterminate(true);
+            pdialog.setCancelable(false);
+
+            final Utils utils = new Utils(frMng, pdialog);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

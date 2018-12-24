@@ -15,15 +15,18 @@ import android.widget.TextView;
 import android.media.MediaPlayer;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
+import cse.marmara.marunify.MainActivity;
 import cse.marmara.marunify.R;
 import cse.marmara.marunify.model.Song;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
     private List<Song> arrayList;
 
-    private MediaPlayer mediaPlayer = null;
+    private static MediaPlayer mediaPlayer = null;
     private MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
@@ -86,26 +89,25 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //playMp3(mTxtSngTitle.getText().toString(), frAct.getApplicationContext()); TODO play musicccc
+                    playMp3(mTxtSngTitle.getText().toString());
                     Log.e("SONG",mTxtSngTitle.getText().toString()); // log for now
                 }
             });
         }
     }
 
-    public void playMp3(String mp3Title, Context context) {
+    public void playMp3(String mp3Title) {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
         }
         try {
-            Uri mp3 = Uri.parse("android.resource://"
-                    + context.getPackageName() + "/raw/"
-                    + mp3Title);
+            FileInputStream mp3Fd = new FileInputStream(new File(MainActivity.musicPath
+                    + mp3Title + ".mp3"));
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mediaPlayer.setDataSource(context, mp3);
+            mediaPlayer.setDataSource(mp3Fd.getFD());
             mediaPlayer.setLooping(false);
             mediaPlayer.prepare(); // might take long! (for buffering, etc)
             mediaPlayer.start();
@@ -114,6 +116,5 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             e.printStackTrace();
         }
     }
-
 
 }

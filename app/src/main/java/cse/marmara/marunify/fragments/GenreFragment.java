@@ -55,7 +55,7 @@ public class GenreFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        GenreAdapter adapter = new GenreAdapter(frMng, mList);
+        GenreAdapter adapter = new GenreAdapter(frMng, getActivity(), mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

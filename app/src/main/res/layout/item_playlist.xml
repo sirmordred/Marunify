@@ -6,31 +6,28 @@
     android:orientation="vertical"
     android:layout_marginBottom="12dp"
     android:layout_marginEnd="12dp"
-    android:weightSum="2">
+    android:weightSum="1">
 
     <TextView
         android:gravity="center"
         android:id="@+id/txtPlaylistTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="12dp"
         android:text="MyPlaylist" />
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/txtPlaylistSongCount"
+    <View
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="12dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:text="4 Song" />
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
 
 
 </LinearLayout>

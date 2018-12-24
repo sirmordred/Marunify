@@ -3,11 +3,11 @@
     android:id="@+id/itemUser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginBottom="12dp"
-    android:layout_marginEnd="12dp">
+    android:orientation="vertical">
 
     <TextView
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="6dp"
         android:gravity="center"
         android:id="@+id/txtUserName"
         android:layout_width="match_parent"
@@ -17,5 +17,12 @@
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:text="Alperen" />
+
+    <View
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
 
 </LinearLayout>

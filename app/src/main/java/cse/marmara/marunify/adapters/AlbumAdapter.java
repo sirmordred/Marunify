@@ -1,5 +1,7 @@
 package cse.marmara.marunify.adapters;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,9 +21,11 @@ import cse.marmara.marunify.model.Album;
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder> {
     private List<Album> arrayList;
     private FragmentManager frgMng;
+    private FragmentActivity act;
 
-    public AlbumAdapter(FragmentManager frgMng, List<Album> arrayList) {
+    public AlbumAdapter(FragmentManager frgMng, FragmentActivity act, List<Album> arrayList) {
         this.frgMng = frgMng;
+        this.act = act;
         this.arrayList = arrayList;
     }
 
@@ -64,7 +68,12 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
             mTxtAlbTitle = view.findViewById(R.id.txtAlbumTitle);
             mTxtAlbOwner = view.findViewById(R.id.txtAlbumOwner);
 
-            final Utils utils = new Utils(frgMng);
+            ProgressDialog pdialog = new ProgressDialog(act);
+            pdialog.setMessage("Opening. Please wait...");
+            pdialog.setIndeterminate(true);
+            pdialog.setCancelable(false);
+
+            final Utils utils = new Utils(frgMng, pdialog);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

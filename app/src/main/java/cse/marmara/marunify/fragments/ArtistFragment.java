@@ -55,7 +55,7 @@ public class ArtistFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        ArtistAdapter adapter = new ArtistAdapter(frMng, mList);
+        ArtistAdapter adapter = new ArtistAdapter(frMng, getActivity(), mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

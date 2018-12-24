@@ -53,7 +53,7 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
 
-        PlaylistAdapter adapter = new PlaylistAdapter(frMng, mList);
+        PlaylistAdapter adapter = new PlaylistAdapter(frMng, getActivity(), mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;

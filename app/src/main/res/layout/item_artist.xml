@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginBottom="12dp"
-    android:layout_marginEnd="12dp"
     android:weightSum="2">
 
     <TextView
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:id="@+id/txtArtTitle"
         android:layout_width="match_parent"
@@ -22,6 +21,7 @@
 
 
     <LinearLayout
+        android:layout_marginEnd="6dp"
         android:gravity="center"
         android:weightSum="2"
         android:layout_weight="1"
@@ -54,4 +54,12 @@
             android:text="3 Song" />
 
     </LinearLayout>
+
+    <View
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
+
 </LinearLayout>

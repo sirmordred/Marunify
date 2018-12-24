@@ -1,5 +1,7 @@
 package cse.marmara.marunify.adapters;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,9 +21,11 @@ import cse.marmara.marunify.model.Genre;
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder> {
     private List<Genre> arrayList;
     private FragmentManager frgMng;
+    private FragmentActivity act;
 
-    public GenreAdapter(FragmentManager frgMng, List<Genre> arrayList) {
+    public GenreAdapter(FragmentManager frgMng, FragmentActivity act, List<Genre> arrayList) {
         this.frgMng = frgMng;
+        this.act = act;
         this.arrayList = arrayList;
     }
 
@@ -36,7 +40,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
         Genre object = arrayList.get(position);
         if (object != null) {
             holder.mTxtGnrTitle.setText(object.getTitle());
-            holder.mTxtGnrSngCnt.setText(object.getGenreSngCnt());
+            holder.mTxtGnrSngCnt.setText(object.getGenreSngCnt() + " Song");
             holder.mMainContainer.setTag(position);
         }
     }
@@ -64,7 +68,12 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHol
             mTxtGnrTitle = view.findViewById(R.id.txtGenreTitle);
             mTxtGnrSngCnt = view.findViewById(R.id.txtGenreSongCount);
 
-            final Utils utils = new Utils(frgMng);
+            ProgressDialog pdialog = new ProgressDialog(act);
+            pdialog.setMessage("Opening. Please wait...");
+            pdialog.setIndeterminate(true);
+            pdialog.setCancelable(false);
+
+            final Utils utils = new Utils(frgMng, pdialog);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

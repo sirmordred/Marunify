@@ -1,5 +1,7 @@
 package cse.marmara.marunify.adapters;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,9 +21,11 @@ import cse.marmara.marunify.model.Artist;
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
     private List<Artist> arrayList;
     private FragmentManager frgMng;
+    private FragmentActivity act;
 
-    public ArtistAdapter(FragmentManager frgMng, List<Artist> arrayList) {
+    public ArtistAdapter(FragmentManager frgMng, FragmentActivity act, List<Artist> arrayList) {
         this.frgMng = frgMng;
+        this.act = act;
         this.arrayList = arrayList;
     }
 
@@ -36,8 +40,8 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         Artist object = arrayList.get(position);
         if (object != null) {
             holder.mTxtArtName.setText(object.getName());
-            holder.mTxtArtAlbumCnt.setText(object.getArtAlbCount());
-            holder.mTxtArtSongCnt.setText(object.getArtSongCount());
+            holder.mTxtArtAlbumCnt.setText(String.valueOf(object.getArtAlbCount()) + " Album");
+            holder.mTxtArtSongCnt.setText(String.valueOf(object.getArtSongCount()) + " Song");
             holder.mMainContainer.setTag(position);
         }
     }
@@ -67,7 +71,12 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             mTxtArtAlbumCnt = view.findViewById(R.id.txtArtAlbCnt);
             mTxtArtSongCnt = view.findViewById(R.id.txtArtSngCnt);
 
-            final Utils utils = new Utils(frgMng);
+            ProgressDialog pdialog = new ProgressDialog(act);
+            pdialog.setMessage("Opening. Please wait...");
+            pdialog.setIndeterminate(true);
+            pdialog.setCancelable(false);
+
+            final Utils utils = new Utils(frgMng, pdialog);
             mMainContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

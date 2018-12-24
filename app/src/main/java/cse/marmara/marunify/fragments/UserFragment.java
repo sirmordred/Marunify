@@ -50,11 +50,11 @@ public class UserFragment extends Fragment {
                 .setLayoutManager(mLinearLayout);//Linear Items
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 mLinearLayout.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        //recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setHasFixedSize(true);
 
 
-        UserAdapter adapter = new UserAdapter(frMng, mList);
+        UserAdapter adapter = new UserAdapter(frMng, getActivity(), mList);
         recyclerView.setAdapter(adapter);// set adapter on recyclerview
 
         return view;
